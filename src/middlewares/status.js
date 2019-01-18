@@ -1,4 +1,9 @@
 export default function status (req, res) {
+    // return unparsed res if fullResponse option
+    if (req.options.fullResponse) {
+        return res
+    }
+    
     // returns res or a promise that resolves with res
     return res.ok
         ? extractJson(res, req.debug) : Object.assign(res, {errorCode: res.status})
